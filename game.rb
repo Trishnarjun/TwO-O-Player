@@ -2,39 +2,32 @@ require "./question"
 require "./players"
 
 class Game
-  attr_accessor
-
-  def initialize
-    @player1 = 0
-    @player2 = 0
-    @currentPlayer = 1
-  end
-
   def startGame
     players = Players.new
     counter = 1
-    while players.p1 <= 3 && players.p2 <= 3
+    while players.p1 > 0 && players.p2 > 0
       question = Question.new
-      puts players.p1
-      puts players.p2
       if counter % 2 === 0
         question.printQuestion("2")
         if question.checkAns(gets.chomp.to_i)
-          players.player2Win
-          # puts "Player 2: Yes! You are correct"
+          puts "Player 2: Yes! You are correct"
         else 
+          players.player2Lose
+          puts "Player 2: Seriously? No!"
         end
       else
         question.printQuestion("1")
         if question.checkAns(gets.chomp.to_i)
-          puts players.player1Win
+          puts "Player 1: Yes! You are correct"
+        else
+          puts players.player1Lose
+          puts "Player 1: Seriously? No!"
         end
       end
+      puts "P1: #{players.p1}/3 vs P2: #{players.p2}/3"
       puts "-------- NEW TURN --------" 
       counter += 1
     end
-    puts players.p1
-    puts players.p2
     players.printEnd
   end
 end

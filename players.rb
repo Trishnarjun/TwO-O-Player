@@ -2,16 +2,16 @@ class Players
   attr_accessor :p1, :p2
 
   def initialize
-    @p1 = 0
-    @p2 = 0
+    @p1 = 3
+    @p2 = 3
   end
 
-  def player1Win
-    @p1 += 1
+  def player1Lose
+    @p1 -= 1
   end
 
-  def player2Win
-    @p2 += 1
+  def player2Lose
+    @p2 -= 1
   end
 
   def printEnd
